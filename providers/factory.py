@@ -1,5 +1,6 @@
 from typing import Optional, List, Type, Dict, TypeVar
 from .base_provider import LyricsProvider, TrackInfo
+from .genius_provider import GeniusProvider
 import importlib
 import pkgutil
 import inspect
@@ -18,7 +19,8 @@ class ProviderFactory:
         if cls._initialized:
             return
             
-        # TODO: Register built-in providers
+        # Register built-in providers
+        cls.register_provider(GeniusProvider)
         
         # TODO: Dynamically discover and register other providers from the providers package
         

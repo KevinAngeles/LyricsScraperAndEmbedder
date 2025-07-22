@@ -1,6 +1,7 @@
 from mutagen.mp3 import MP3 as MP3Tags
 from mutagen.mp4 import MP4 as MP4Tags
 from pathlib import Path
+import os
 
 def get_track_number(file_path):
     """Extract track number from audio file metadata.
@@ -31,8 +32,10 @@ def get_track_number(file_path):
         print(f"Error reading track number from {file_path}: {e}")
         return None
 
-def ensure_lyrics_dir() -> Path:
-    """Ensure the lyrics directory exists and return its path."""
-    lyrics_dir = Path("lyrics")
-    lyrics_dir.mkdir(exist_ok=True)
-    return lyrics_dir
+def ensure_media_directory() -> Path:
+    """Ensure media directory exists and return its path."""
+    current_dir = os.getcwd()
+    media_dir = os.path.join(current_dir, 'media')
+    # Create directories if they don't exist
+    os.makedirs(media_dir, exist_ok=True)
+    return media_dir

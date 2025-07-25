@@ -2,6 +2,9 @@ from mutagen.mp3 import MP3 as MP3Tags
 from mutagen.mp4 import MP4 as MP4Tags
 from pathlib import Path
 import os
+from providers.factory import ProviderFactory
+from providers.base_provider import LyricsProvider
+from typing import Optional
 
 def get_track_number(file_path):
     """Extract track number from audio file metadata.
@@ -39,3 +42,15 @@ def ensure_media_directory() -> Path:
     # Create directories if they don't exist
     os.makedirs(media_dir, exist_ok=True)
     return media_dir
+
+def get_provider_from_url(url: str) -> Optional[LyricsProvider]:
+    """Get the appropriate provider for the given URL."""
+    provider = ProviderFactory.get_provider_for_url(url)
+    if not provider:
+        print(f"\nError: No supported provider found for URL: {url}")
+        print("Supported domains:")
+        for name, provider_class in ProviderFactory._providers.items():
+            if hasattr(provider_class, 'DOMAINS'):
+                print(f"- {name}: {', '.join(provider_class.DOMAINS)}")
+        return None
+    return provider

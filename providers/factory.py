@@ -1,7 +1,7 @@
 from typing import Optional, List, Type, Dict, TypeVar
-from .base_provider import LyricsProvider, TrackInfo
-from .genius_provider import GeniusProvider
-from .musixmatch_provider import MusixmatchProvider
+from .BaseProvider import LyricsProvider, TrackInfo
+from .GeniusProvider import GeniusProvider
+from .MusixmatchProvider import MusixmatchProvider
 import importlib
 import pkgutil
 import inspect

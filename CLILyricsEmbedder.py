@@ -18,6 +18,7 @@ import sys
 from typing import List
 from pathlib import Path
 from Utilities import ensure_media_directory, get_provider_from_url, get_track_number
+from LyricsEmbedder import add_lyrics_to_audio
 
 def embed_files(media_files: List[Path], provider, url: str):
     if not url or len(media_files) == 0:
@@ -148,6 +149,36 @@ def embed_files(media_files: List[Path], provider, url: str):
             return False
         print('At least one lyric was successfully downloaded')
 
+        for track_number, processed_track_info in matched_processed_track_info_dict.items():
+            # Get the saved file path from tracks_uploaded_dictionary
+            file_info = tracks_uploaded_dictionary.get(track_number)
+            if file_info:
+                print(f"\n=== Processing file: {file_info['path']} ===")
+            file_path = str(file_info['path'])
+            print(f"Original size: {os.path.getsize(file_path)} bytes")
+            print(f"Lyrics type: {type(processed_track_info.lyrics)}")
+            print(f"Lyrics preview: {str(processed_track_info.lyrics)[:30]}..." if processed_track_info.lyrics else "No lyrics content")
+            success = add_lyrics_to_audio(file_path, processed_track_info.lyrics)
+            
+            if success:
+                success_count += 1
+                print(f"Successfully embedded lyrics in {file_info['filename']}")
+            else:
+                print(f"Failed to embed lyrics in {file_info['filename']}")
+        
+        if success_count > 0:
+            print(
+                f"Successfully embedded lyrics in {success_count} files",
+                {
+                    'success': True,
+                    'processed_count': processed_count,
+                    'total_tracks': len(tracks_uploaded_dictionary),
+                    'message': 'Lyrics embedded successfully',
+                    'success_count': success_count
+                }
+            )
+            return True
+        print("No files were successfully embedded")
         return False
     except Exception as e:
         error_msg = str(e)

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Lyrics Embedder</h2>
+    
+    <div class="input-group">
+        <label for="lyrics-url">Lyrics URL (Genius or Musixmatch):</label>
+        <input type="text" id="lyrics-url" placeholder="https://www.genius.com/album/... or https://www.musixmatch.com/album/...">
+    </div>
+    
+    <div id="file-list"></div>
+    
+    <button id="embed-btn" disabled>Embed Lyrics</button>
+    
+    <div id="processing-section" class="processing-section">
+        <h3>Processing Tracks</h3>        
+        <div class="tracks-container">
+            <div class="tracks-section">
+                <div class="tracks-header">
+                    <span>Valid Tracks <span id="valid-tracks-count">(0)</span></span>
+                </div>
+                <div id="valid-tracks">
+                    <p class="no-tracks">No valid tracks found</p>
+                </div>
+            </div>
+            
+            <div class="tracks-section">
+                <div class="tracks-header">
+                    <span>Tracks with Issues <span id="invalid-tracks-count">(0)</span></span>
+                </div>
+                <div id="invalid-tracks">
+                    <p class="no-tracks">No issues found</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="track-list"></div>
+    </div>
+{% endblock %}

@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const embedBtn = document.getElementById('embed-btn');
     const fileInput = document.getElementById('file-input');
     const processingSection = document.getElementById('processing-section');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
     
     let droppedFiles = [];
     
@@ -37,6 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageDiv.remove();
             }
         }, 5000);
+    }
+    
+    function updateProgress(percent) {
+        progressBar.style.width = `${percent}%`;
+        progressText.textContent = `${Math.round(percent)}%`;
     }
     
     // File Handling

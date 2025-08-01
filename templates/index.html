@@ -18,7 +18,17 @@
     <button id="embed-btn" disabled>Embed Lyrics</button>
     
     <div id="processing-section" class="processing-section">
-        <h3>Processing Tracks</h3>        
+        <h3>Processing Tracks</h3>
+        <div id="progress-container">
+            <div class="progress-header">
+                <span>Progress:</span>
+                <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div id="progress-bar"></div>
+            </div>
+        </div>
+        
         <div class="tracks-container">
             <div class="tracks-section">
                 <div class="tracks-header">

@@ -17,12 +17,13 @@ import time
 import sys
 from typing import List
 from pathlib import Path
-from Utilities import ensure_media_directory, get_provider_from_url, get_track_number
-from LyricsEmbedder import add_lyrics_to_audio
+from utilities import ensure_media_directory, get_provider_from_url, get_track_number
+from lyrics_embedder import add_lyrics_to_audio
+from providers.base_provider import LyricsProvider
 
-def embed_files(media_files: List[Path], provider, url: str):
-    if not url or len(media_files) == 0:
-        print("No files provided")
+def embed_files(media_files: List[Path], provider: LyricsProvider, url: str):
+    if not url or len(url.strip()) == 0:
+        print("No URL provided")
         return False
     if not media_files or len(media_files) == 0:
         print("No files provided")

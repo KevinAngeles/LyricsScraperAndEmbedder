@@ -264,11 +264,6 @@ class MusixmatchProvider(LyricsProvider):
     def get_track_info(self, track_url: str, track_number: int) -> Optional[TrackInfo]:
         """Get track information from a Musixmatch track URL."""
         try:
-            response = self.session.get(track_url)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.text, 'html.parser')
-            
             # Remove self.base_url from track_url
             href = track_url.replace(self.BASE_URL, '')
             
@@ -282,7 +277,7 @@ class MusixmatchProvider(LyricsProvider):
                 title = parts[3].replace('-', ' ').title()
             
             # Get lyrics
-            lyrics = self._get_lyrics_from_page(soup)
+            lyrics = self.get_lyrics(track_url)
             
             return TrackInfo(
                 title=title,

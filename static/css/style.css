@@ -36,3 +36,94 @@ h2, h3 {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+/* Drop area */
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    padding: 25px;
+    text-align: center;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.drop-area.highlight {
+    border-color: #4CAF50;
+    background-color: #f0fff0;
+}
+
+/* File list */
+#file-list {
+    margin: 15px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0;
+    list-style: none;
+}
+
+#file-list p {
+    padding: 10px;
+    color: #666;
+    text-align: center;
+    margin: 0;
+    font-style: italic;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.file-item:hover {
+    background-color: #f8f9fa;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-info {
+    flex-grow: 1;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-status {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+    background-color: #e9ecef;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.remove-file {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 0 5px;
+    line-height: 1;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+
+.remove-file:hover {
+    background-color: #f8d7da;
+    transform: scale(1.1);
+}
+
+.remove-file:active {
+    transform: scale(0.95);
+}

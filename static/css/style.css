@@ -127,3 +127,40 @@ h2, h3 {
 .remove-file:active {
     transform: scale(0.95);
 }
+
+/* Buttons */
+button {
+    cursor: pointer;
+}
+
+#embed-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+#embed-btn:hover {
+    background: #45a049;
+}
+
+#embed-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Processing section */
+.processing-section {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

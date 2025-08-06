@@ -164,3 +164,28 @@ button {
     border: 1px solid #ddd;
     border-radius: 4px;
 }
+
+/* Progress bar */
+#progress-container {
+    margin: 15px 0;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.progress-bar-container {
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #28a745;
+    transition: width 0.3s;
+}

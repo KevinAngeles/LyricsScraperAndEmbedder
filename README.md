@@ -27,6 +27,40 @@ A Python-based tool to automatically download lyrics from Genius.com or Musixmat
 * **Detailed Logging**: Comprehensive console output for debugging and monitoring
 * **Direct File Processing**: Processes MP3/M4A files directly from the media folder, embedding lyrics into the original files
 
+## Prerequisites
+
+- Python 3.6 or higher
+- Required Python packages (install via `pip install -r requirements.txt`):
+  - requests
+  - beautifulsoup4
+  - mutagen
+  - lxml
+  - Flask (for web version)
+  - Werkzeug (required by Flask)
+
+## Installation
+
+1. Clone this repository or download the scripts to your local machine
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Directory Structure
+
+```
+LyricsScraperAndEmbedder/
+├── media/                    # Directory for MP3/M4A files (created on first run)
+├── providers/                # Lyrics provider implementations
+├── static/                   # Web application static files (CSS, JS)
+├── templates/                # Web application HTML templates
+├── cli_lyrics_embedder.py    # Command-line interface version
+├── lyrics_embedder.py        # Core lyrics embedding functionality
+├── utilities.py              # Shared utility functions
+├── web_lyrics_embedder.py    # Web application version
+└── requirements.txt          # Python dependencies
+```
+
 ## Disclaimer
 
 This tool is for personal use only. Please respect copyright laws and Genius.com's terms of service. The developers are not responsible for any misuse of this software.

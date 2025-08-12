@@ -61,6 +61,65 @@ LyricsScraperAndEmbedder/
 └── requirements.txt          # Python dependencies
 ```
 
+## Usage
+
+### Web Version
+1. **Start the web server**:
+   ```bash
+   python web_lyrics_embedder.py
+   ```
+2. **Open your browser** to `http://localhost:5000`
+3. **Enter the Genius album URL** and click "Process"
+4. **Monitor progress** directly in your browser
+
+### CLI Version
+1. **Prepare Your Audio Files**:
+   - Place your MP3 or M4A files in the `media` folder
+   - Ensure audio files have track numbers in their metadata that match the track numbers on Genius for proper matching.
+   - Files with missing track numbers or track numbers different from the Genius track listing won't be processed.
+
+2. **Run the CLI Tool**:
+   ```bash
+   python cli_lyrics_embedder.py [genius_album_url]
+   ```
+   
+   Example:
+   ```bash
+   python cli_lyrics_embedder.py "https://genius.com/albums/Various-artists/Fast-five-original-motion-picture-soundtrack"
+   ```
+
+3. **Follow Prompts**:
+   - If no URL is provided, you'll be prompted to enter one
+   - The script will guide you through the process
+
+4. **iTunes Sync (Optional)**:
+   - Open the properties of each audio file in iTunes
+   - Save and close the properties of each audio file in iTunes for the lyrics to be allowed to be synchronized to Apple devices
+   - If you skip this step, the lyrics will be embedded but may not sync to Apple devices
+
+## How It Works
+
+### Both Versions:
+1. **Lyrics Download**:
+   - The application can use either Genius or Musixmatch as the lyrics source
+   - For Genius: Scrapes the provided album URL to get track listings and lyrics
+   - For Musixmatch: Searches and matches tracks using the Musixmatch API
+
+2. **Lyrics Embedding**:
+   - The application processes each audio file in the `media` folder
+   - It matches the audio files with the downloaded lyrics using track numbers from the files' metadata
+   - Lyrics are embedded into the audio files' metadata (ID3 tags for MP3, iTunes tags for M4A)
+
+### Web Version Specifics:
+- Uses Flask to serve a simple web interface
+- Provides real-time progress updates via web sockets
+- Displays a clean, responsive interface for managing the process
+
+### CLI Version Specifics:
+- Designed for automation and scripting
+- Shows progress bars in the terminal
+- Ideal for batch processing and integration with other tools
+
 ## Disclaimer
 
 This tool is for personal use only. Please respect copyright laws and Genius.com's terms of service. The developers are not responsible for any misuse of this software.

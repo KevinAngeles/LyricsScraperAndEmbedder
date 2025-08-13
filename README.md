@@ -120,6 +120,19 @@ LyricsScraperAndEmbedder/
 - Shows progress bars in the terminal
 - Ideal for batch processing and integration with other tools
 
+## Notes
+
+- **Supported Audio Formats**: MP3 (.mp3) and M4A (.m4a)
+- **Important**: For best results, ensure your audio files have proper metadata (track numbers, titles) that match the source platform
+- **Source-Specific Notes**:
+  - **Genius**: Requires album URLs from genius.com for batch processing
+  - **Musixmatch**: Works with individual tracks or albums using search functionality
+- **Troubleshooting**:
+  - If lyrics aren't being found, verify your audio files have correct metadata (track numbers, titles)
+  - Check if the track/album names in your files match those on the source platform
+  - Ensure you have write permissions for the audio files
+  - Some M4A files might have restricted write permissions. Check file properties if embedding fails
+
 ## Disclaimer
 
 This tool is for personal use only. Please respect copyright laws and Genius.com's terms of service. The developers are not responsible for any misuse of this software.

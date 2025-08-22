@@ -122,21 +122,25 @@ class GeniusProvider(LyricsProvider):
             for chart_row in chart_rows:
                 track_lyrics_number_node = chart_row.xpath('./div[contains(@class, "chart_row-number_container")][1]/span[1]/span[1]')
                 # if node is an empty list, skip it
-                if not track_lyrics_number_node or not track_lyrics_number_node[0].text:
+                if not isinstance(track_lyrics_number_node, list) or not len(track_lyrics_number_node) > 0 or not hasattr(track_lyrics_number_node[0], 'text') or not isinstance(track_lyrics_number_node[0].text, str):
                     continue
-                track_lyrics_number = track_lyrics_number_node[0].text
+                track_lyrics_number = int(track_lyrics_number_node[0].text)
                 track_lyrics_url_node = chart_row.xpath('./div[contains(@class, "chart_row-content")][1]/a[1]/@href')
-                if not track_lyrics_url_node:
+                if not isinstance(track_lyrics_url_node, list) or not len(track_lyrics_url_node) > 0 or not isinstance(track_lyrics_url_node[0], str) or not track_lyrics_url_node[0].strip():
                     continue
-                track_lyrics_url = track_lyrics_url_node[0]
+                track_lyrics_url = track_lyrics_url_node[0].strip()
+                track_lyrics_missing_text_node = chart_row.xpath('./div[contains(@class, "chart_row-metadata_element")][1]/text()')
+                # currently, in genius albums, if lyrics are missing for a track, it will have (Missing Lyrics) in a row with class chart_row-metadata_element
+                if isinstance(track_lyrics_missing_text_node, list) and len(track_lyrics_missing_text_node) > 0 and isinstance(track_lyrics_missing_text_node[0], str) and track_lyrics_missing_text_node[0].strip().lower() in ["(missing lyrics)", "(unreleased)"]:
+                    continue
                 track_lyrics_title_node = chart_row.xpath('./div[contains(@class, "chart_row-content")][1]/a[1]/h3[1]/text()')
-                if not track_lyrics_title_node:
+                if not isinstance(track_lyrics_title_node, list) or not len(track_lyrics_title_node) > 0 or not isinstance(track_lyrics_title_node[0], str) or not track_lyrics_title_node[0].strip():
                     continue
                 track_lyrics_title = track_lyrics_title_node[0].strip()
                 track_info = TrackInfo(
                     title=track_lyrics_title,
                     artist=artist_name,
-                    track_number=int(track_lyrics_number),
+                    track_number=track_lyrics_number,
                     url=track_lyrics_url
                 )
                 track_info_list_without_lyrics.append(track_info)

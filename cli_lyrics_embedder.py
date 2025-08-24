@@ -38,7 +38,6 @@ def embed_files(media_files: List[Path], provider: LyricsProvider, url: str):
         tracks_uploaded_dictionary = {}
         files_without_track_numbers = []
         
-        embed_count = 0
         success_count = 0
             
         print("\n=== Processing Uploaded Files ===")
@@ -117,11 +116,9 @@ def embed_files(media_files: List[Path], provider: LyricsProvider, url: str):
         processed_count = 0
         at_least_one_lyric_successfully_processed = False
         matched_processed_track_info_dict = {}
-        for i, matched_unprocessed_track_info in enumerate(matched_unprocessed_track_info_list):
+        for matched_unprocessed_track_info in matched_unprocessed_track_info_list:
             processed_count += 1
-            track_id = matched_unprocessed_track_info.url.split('/')[-1]
             track_number = matched_unprocessed_track_info.track_number
-            progress_number = (processed_count/len(matched_unprocessed_track_info_list))*100
             # Simulate processing time
             time.sleep(0.5)
 

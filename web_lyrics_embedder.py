@@ -6,10 +6,9 @@ A simple web interface for embedding lyrics in audio files.
 """
 
 import os
-from flask import Flask, request, jsonify, Response, render_template, send_from_directory
+from flask import Flask, request, jsonify, Response, render_template
 import json
 import time
-from typing import Optional, List, Dict, Any
 from providers.factory import ProviderFactory
 from utilities import get_track_number, ensure_media_directory
 from lyrics_embedder import add_lyrics_to_audio
@@ -102,7 +101,6 @@ def process_files():
         tracks_uploaded_dictionary = {}
         files_without_track_numbers = []
         
-        embed_count = 0
         success_count = 0
             
         print("\n=== Processing Uploaded Files ===")
